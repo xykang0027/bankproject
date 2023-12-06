@@ -32,7 +32,17 @@ public class ATM {
         System.out.println("enter your account information");
         String name = sc.next();
         acc.setUsername(name);
-        
+        System.out.println("please set your password");
+        String password = sc.next();
+        System.out.println("piease confirm your password");
+        String confirmpassword = sc.next();
+        if(confirmpassword.equals(password)) {
+            acc.setPassWord(confirmpassword);
+        }else {
+            System.out.println("the two passwords you entered do not match.please confirm");
+
+        }
+
     }
 }
 
