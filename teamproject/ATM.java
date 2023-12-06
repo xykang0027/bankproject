@@ -26,6 +26,14 @@ public class ATM {
             }
         }
     }
+//finish opening account
+    private void rcreatAccount(){
+        Account acc = new Account();
+        System.out.println("enter your account information");
+        String name = sc.next();
+        acc.setUsername(name);
+        
+    }
 }
 
 
