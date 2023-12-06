@@ -18,6 +18,7 @@ public class ATM {
             switch (command){
                 case 1:
                     //log in
+                    login();
 
                     break;
                 case 2:
@@ -28,16 +29,27 @@ public class ATM {
                     System.out.println("no operation ");
             }
         }
-    }
+    }//finish opening account
     private void login(){
-        System.out.println("==System login==");
+        System.out.println("System login");
         if(accounts.size()==0){
             return;
         }
         System.out.println("Please enter your login card number");
         String cardid=sc.next();
+        Account acc =  getAccountByCardId(cardid);
+        if(acc==null) {
+            System.out.println("The card number you entered does not exist. Please confirm");
+        }else{
+            System.out.println("please set your password");
+            String password= sc.next();
+            if(acc.setPassWord().equals(password)){
+              System.out.println("Congratulations" +acc.getUsername()+"Successfully logged into the system, your card number is"+acc.getCardID());
+            }else{
+                System.out.println("The card number you entered does not exist. Please confirm");
+            }
+        }
     }
-//finish opening account
     private void creatAccount() {
         System.out.println("**System account opening operation**");
         Account acc = new Account();
