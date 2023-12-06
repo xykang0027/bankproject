@@ -1,5 +1,6 @@
 package teamproject;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class ATM {
@@ -17,9 +18,11 @@ public class ATM {
             switch (command){
                 case 1:
                     //log in
+
                     break;
                 case 2:
                     //account opening
+                    creatAccount();
                     break;
                 default:
                     System.out.println("no operation ");
@@ -27,23 +30,48 @@ public class ATM {
         }
     }
 //finish opening account
-    private void rcreatAccount(){
+    private void creatAccount() {
+        System.out.println("**System account opening operation**");
         Account acc = new Account();
         System.out.println("enter your account information");
         String name = sc.next();
         acc.setUsername(name);
         System.out.println("please set your password");
-        String password = sc.next();
+        String passWord = sc.next();
         System.out.println("piease confirm your password");
-        String confirmpassword = sc.next();
-        if(confirmpassword.equals(password)) {
-            acc.setPassWord(confirmpassword);
+        String okPassWord = sc.next();
+        if(okPassWord.equals(passWord)) {
+            acc.setPassWord(okPassWord);
         }else {
             System.out.println("the two passwords you entered do not match.please confirm");
 
         }
+        System.out.println("Please enter your withdrawal limit");
+        double limit = sc.nextDouble();
+        acc.setLimit(limit);
 
+
+
+        accounts.add(acc);
+        System.out.println("Congratulations!"+acc.getUsername()+"Account opened successfully, your card number is:");
     }
+ private String createCardid(){
+        String cardid="";
+        Random r=new Random();
+        for(int i =0;i<8;i++){
+            int data = r.nextInt(8);
+            cardid+=data;
+        }
+ }
+ private Account getAccountByCardId(String cardid){
+        for(int i =0;i < accounts.size();i++){
+            Account acc =accounts.get(i);
+            if(acc.getCardID().equals(cardid)){
+                return acc;
+            }
+        }
+        return null;
+ }
 }
 
 
