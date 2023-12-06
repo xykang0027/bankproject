@@ -29,6 +29,14 @@ public class ATM {
             }
         }
     }
+    private void login(){
+        System.out.println("==System login==");
+        if(accounts.size()==0){
+            return;
+        }
+        System.out.println("Please enter your login card number");
+        String cardid=sc.next();
+    }
 //finish opening account
     private void creatAccount() {
         System.out.println("**System account opening operation**");
