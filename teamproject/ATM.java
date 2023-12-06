@@ -49,7 +49,8 @@ public class ATM {
         System.out.println("Please enter your withdrawal limit");
         double limit = sc.nextDouble();
         acc.setLimit(limit);
-
+         String newcardid = createCardid();
+         acc.setCardID(newcardid);
 
 
         accounts.add(acc);
@@ -62,6 +63,11 @@ public class ATM {
             int data = r.nextInt(8);
             cardid+=data;
         }
+      Account acc =  getAccountByCardId(cardid);
+        if(acc==null) {
+            return cardid;
+        }
+     return cardid;
  }
  private Account getAccountByCardId(String cardid){
         for(int i =0;i < accounts.size();i++){
