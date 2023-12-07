@@ -46,4 +46,8 @@ public class Account {
     public void setLimit(double limit) {
         this.limit = limit;
     }
+
+    public String setPassWord(String okPassWord) {
+        return passWord;
+    }
 }
