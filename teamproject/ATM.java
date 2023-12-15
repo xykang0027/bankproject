@@ -7,7 +7,7 @@ public class ATM {
     private ArrayList<Account> accounts=new ArrayList<>();
     private Scanner sc = new Scanner(System.in);
     //opening
-    private Account loginAcc; //to remember
+
     public void start (){
         while (true) {
             System.out .println("welcome to joim the ATM");
@@ -18,7 +18,6 @@ public class ATM {
             switch (command){
                 case 1:
                     //log in
-                    login();
 
                     break;
                 case 2:
@@ -29,61 +28,19 @@ public class ATM {
                     System.out.println("no operation ");
             }
         }
-    }//finish opening account
+    }
     private void login(){
-        System.out.println("System login");
+        System.out.println("==System login==");
         if(accounts.size()==0){
             return;
         }
         System.out.println("Please enter your login card number");
         String cardid=sc.next();
-        Account acc =  getAccountByCardId(cardid);
-        if(acc==null) {
-            System.out.println("The card number you entered does not exist. Please confirm");
-        }else{
-            System.out.println("please set your password");
-            String password= sc.next();
-            if(acc.setPassWord().equals(password)){
-                loginAcc=acc;
-              System.out.println("Congratulations" +acc.getUsername()+"Successfully logged into the system, your card number is"+acc.getCardID());
-            }else{
-                System.out.println("The card number you entered does not exist. Please confirm");
-            }
-        }
     }
-    private void showUserCommand(){
-        System.out.println("you can choose these functions to deal with your account");
-        System.out.println("1.check account");
-        System.out.println("2.save money");
-        System.out.println("3.take money");
-        System.out.println ("4.transfer money");
-        System.out.println ("5.change password");
-        System.out.println("6.leave");
-        int command = sc.nextInt();
-        switch(command){
-            case 1:
-                //check money
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            case 5:
-                break;
-            case 6:
-                break;
-            default:
-                System.out.println("the operate you choose is not exsit,please choose another");
-        }
-    }
-    private void showloginAcccount(){
-        System.out.println("account number:" + loginAcc.getCardId());
-        System.out.println("account's keeper:" + loginAcc.getUsername());
-        System.out.println("")
-    }
+//finish opening account
     private void creatAccount() {
+        System.out.println("**System account opening operation**");
+        Account acc = new Account();
         System.out.println("enter your account information");
         String name = sc.next();
         acc.setUsername(name);
@@ -105,7 +62,7 @@ public class ATM {
 
 
         accounts.add(acc);
-        System.out.println("Congratulations!"+acc.getUsername()+"Account opened successfully, your card number is:"+acc.getCardID());
+        System.out.println("Congratulations!"+acc.getUsername()+"Account opened successfully, your card number is:");
     }
  private String createCardid(){
         String cardid="";
