@@ -153,6 +153,22 @@ public class ATM {
             }
         }
     }
+    private void depositMoney() {
+        System.out.println("save money");
+        System.out.println("please input the amount you want to save：");
+        double money = sc.nextDouble();
+
+        loginAcc.setMoney(loginAcc.getMoney() + money);
+        System.out.println("congratulation,you have saved：" + money + "in your account" + loginAcc.getMoney());
+    }
+    private void showLoginAccount(){
+        System.out.println("here is the information of your account");
+        System.out.println("account number：" + loginAcc.getCardID());
+        System.out.println("user：" + loginAcc.getUsername());
+        System.out.println("sex：" + loginAcc.getSex());
+        System.out.println("money：" + loginAcc.getMoney());
+        System.out.println("limitation of each time：" + loginAcc.getLimit());
+    }
 
     private void transferMoney() {
         System.out.println("transfer money");
