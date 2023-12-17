@@ -1,21 +1,22 @@
 package teamproject;
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
 public class ATM {
-    private ArrayList<Account> accounts=new ArrayList<>();
+    private ArrayList<Account> accounts = new ArrayList<>();
     private Scanner sc = new Scanner(System.in);
     //opening
 
-    public void start (){
+    public void start() {
         while (true) {
-            System.out .println("welcome to joim the ATM");
-            System.out. println("1,log in");
-            System.out. println("2,User account opening");
-            System.out. println("take your choices");
+            System.out.println("welcome to join the ATM");
+            System.out.println("1,log in");
+            System.out.println("2,User account opening");
+            System.out.println("take your choices");
             int command = sc.nextInt();
-            switch (command){
+            switch (command) {
                 case 1:
                     //log in
 
@@ -29,19 +30,21 @@ public class ATM {
             }
         }
     }
-    private void login(){
+
+    private void login() {
         System.out.println("==System login==");
-        if(accounts.size()==0){
+        if (accounts.size() == 0) {
             return;
         }
         System.out.println("Please enter your login card number");
-        String cardid=sc.next();
+        String cardid = sc.next();
         Account acc = getAccountByCardId(cardid);
-        if(acc == null){
+        if (acc == null) {
             System.out.println("The cardid you enter is nonexistent");
         }
     }
-//finish opening account
+
+    //finish opening account
     private void creatAccount() {
         System.out.println("**System account opening operation**");
         Account acc = new Account();
@@ -66,40 +69,43 @@ public class ATM {
 
 
         accounts.add(acc);
-        System.out.println("Congratulations!" + acc.getUsername() + "Account opened successfully, your card number is"+acc.getCardID());
+        System.out.println("Congratulations!" + acc.getUsername() + "Account opened successfully, your card number is" + acc.getCardID());
     }
- private String createCardid(){
-        String cardid="";
-        Random r=new Random();
-        for(int i =0;i<8;i++){
+
+    private String createCardid() {
+        String cardid = "";
+        Random r = new Random();
+        for (int i = 0; i < 8; i++) {
             int data = r.nextInt(8);
-            cardid+=data;
+            cardid += data;
         }
-      Account acc =  getAccountByCardId(cardid);
-        if(acc==null) {
+        Account acc = getAccountByCardId(cardid);
+        if (acc == null) {
             return cardid;
         }
-     return cardid;
- }
- private Account getAccountByCardId(String cardid){
-        for(int i =0;i < accounts.size();i++){
-            Account acc =accounts.get(i);
-            if(acc.getCardID().equals(cardid)){
+        return cardid;
+    }
+
+    private Account getAccountByCardId(String cardid) {
+        for (int i = 0; i < accounts.size(); i++) {
+            Account acc = accounts.get(i);
+            if (acc.getCardID().equals(cardid)) {
                 return acc;
             }
         }
         return null;
- }
-    private void showUserCommand(){
+    }
+
+    private void showUserCommand() {
         System.out.println("you can choose these functions to deal with your account");
         System.out.println("1.check account");
         System.out.println("2.save money");
         System.out.println("3.take money");
-        System.out.println ("4.transfer money");
-        System.out.println ("5.change password");
+        System.out.println("4.transfer money");
+        System.out.println("5.change password");
         System.out.println("6.leave");
         int command = sc.nextInt();
-        switch(command){
+        switch (command) {
             case 1:
                 //check money
                 break;
@@ -120,5 +126,6 @@ public class ATM {
 
 
 }
+
 
 
