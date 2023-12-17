@@ -36,6 +36,10 @@ public class ATM {
         }
         System.out.println("Please enter your login card number");
         String cardid=sc.next();
+        Account acc = getAccountByCardId(cardid);
+        if(acc == null){
+            System.out.println("The cardid you enter is nonexistent");
+        }
     }
 //finish opening account
     private void creatAccount() {
