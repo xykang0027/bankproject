@@ -125,36 +125,72 @@ public class ATM {
                 System.out.println("the operate you choose is not exsit,please choose another");
         }
     }
+
     private void updatePassWord() {
-        System.out.println("==账户密码修改操作==");
+        System.out.println("change password");
         while (true) {
-            System.out.println("请您输入当前账户的密码：");
+            System.out.println("please input your origin password：");
             String passWord = sc.next();
 
-            if(loginAcc.getPassWord().equals(passWord)){
+            if (loginAcc.getPassWord().equals(passWord)) {
                 while (true) {
-                    System.out.println("请您输入新密码：");
+                    System.out.println("please input new password：");
                     String newPassWord = sc.next();
 
-                    System.out.println("请您再次输入密码：");
+                    System.out.println("please input new password again：");
                     String okPassWord = sc.next();
 
-                    if(okPassWord.equals(newPassWord)){
+                    if (okPassWord.equals(newPassWord)) {
                         loginAcc.setPassWord(okPassWord);
-                        System.out.println("恭喜您，您的密码修改成功~~~");
+                        System.out.println("congratulation,you have changed your password successfully~~~");
                         return;
-                    }else {
-                        System.out.println("您输入的2次密码不一致~~");
+                    } else {
+                        System.out.println("the two password you input is different");
                     }
                 }
-            }else {
-                System.out.println("您当前输入的密码不正确~~");
+            } else {
+                System.out.println("the origin password is not exist");
             }
         }
     }
 
+    private void transferMoney() {
+        System.out.println("transfer money");
+        if (accounts.size() < 2) {
+            System.out.println("you are the only account in system, you can not transfer money");
+            return;
+        }
+
+        if (loginAcc.getMoney() == 0) {
+            System.out.println("you don not have enough money");
+            return;
+        }
+
+        while (true) {
+            System.out.println("please input target account number：");
+            String cardId = sc.next();
+
+            Account acc = getAccountByCardId(cardId);
+            if (acc == null) {
+                System.out.println("this account is not exist");
+            } else {
+
+                System.out.println("please input the amount of money you want to transfer：");
+                double money = sc.nextDouble();
+
+                if (loginAcc.getMoney() >= money) {
+                    loginAcc.setMoney(loginAcc.getMoney() - money);
+
+                    acc.setMoney(acc.getMoney() + money);
+                    System.out.println("success");
+                    return; // 跳出转账方法。。
+                } else {
+                    System.out.println("you do not have enough money ,you can only transfer：" + loginAcc.getMoney());
+                }
+            }
+        }
+    }
 
 }
-
 
 
