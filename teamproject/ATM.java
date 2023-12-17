@@ -48,21 +48,21 @@ public class ATM {
         String passWord = sc.next();
         System.out.println("piease confirm your password");
         String okPassWord = sc.next();
-        if(okPassWord.equals(passWord)) {
+        if (okPassWord.equals(passWord)) {
             acc.setPassWord(okPassWord);
-        }else {
+        } else {
             System.out.println("the two passwords you entered do not match.please confirm");
 
         }
         System.out.println("Please enter your withdrawal limit");
         double limit = sc.nextDouble();
         acc.setLimit(limit);
-         String newcardid = createCardid();
-         acc.setCardID(newcardid);
+        String newcardid = createCardid();
+        acc.setCardID(newcardid);
 
 
         accounts.add(acc);
-        System.out.println("Congratulations!"+acc.getUsername()+"Account opened successfully, your card number is:");
+        System.out.println("Congratulations!" + acc.getUsername() + "Account opened successfully, your card number is"+acc.getCardID());
     }
  private String createCardid(){
         String cardid="";
