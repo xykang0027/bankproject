@@ -90,6 +90,35 @@ public class ATM {
         }
         return null;
  }
+    private void showUserCommand(){
+        System.out.println("you can choose these functions to deal with your account");
+        System.out.println("1.check account");
+        System.out.println("2.save money");
+        System.out.println("3.take money");
+        System.out.println ("4.transfer money");
+        System.out.println ("5.change password");
+        System.out.println("6.leave");
+        int command = sc.nextInt();
+        switch(command){
+            case 1:
+                //check money
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            default:
+                System.out.println("the operate you choose is not exsit,please choose another");
+        }
+    }
+
+
 }
 
 
