@@ -50,4 +50,8 @@ public class Account {
     public String setPassWord(String okPassWord) {
         return passWord;
     }
+
+    public String getPassWord() {
+        return passWord;
+    }
 }

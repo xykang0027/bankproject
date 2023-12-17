@@ -7,6 +7,8 @@ import java.util.Scanner;
 public class ATM {
     private ArrayList<Account> accounts = new ArrayList<>();
     private Scanner sc = new Scanner(System.in);
+
+    private Account loginAcc;
     //opening
 
     public void start() {
@@ -121,6 +123,33 @@ public class ATM {
                 break;
             default:
                 System.out.println("the operate you choose is not exsit,please choose another");
+        }
+    }
+    private void updatePassWord() {
+        System.out.println("==账户密码修改操作==");
+        while (true) {
+            System.out.println("请您输入当前账户的密码：");
+            String passWord = sc.next();
+
+            if(loginAcc.getPassWord().equals(passWord)){
+                while (true) {
+                    System.out.println("请您输入新密码：");
+                    String newPassWord = sc.next();
+
+                    System.out.println("请您再次输入密码：");
+                    String okPassWord = sc.next();
+
+                    if(okPassWord.equals(newPassWord)){
+                        loginAcc.setPassWord(okPassWord);
+                        System.out.println("恭喜您，您的密码修改成功~~~");
+                        return;
+                    }else {
+                        System.out.println("您输入的2次密码不一致~~");
+                    }
+                }
+            }else {
+                System.out.println("您当前输入的密码不正确~~");
+            }
         }
     }
 
