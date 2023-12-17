@@ -55,7 +55,7 @@ public class ATM {
         acc.setUsername(name);
         System.out.println("please set your password");
         String passWord = sc.next();
-        System.out.println("piease confirm your password");
+        System.out.println("please confirm your password");
         String okPassWord = sc.next();
         if (okPassWord.equals(passWord)) {
             acc.setPassWord(okPassWord);
