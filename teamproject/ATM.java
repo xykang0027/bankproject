@@ -190,6 +190,31 @@ public class ATM {
             }
         }
     }
+    private void drawMoney() {
+        System.out.println("take money");
+        if(loginAcc.getMoney() < 100){
+            System.out.println("you do not have enough money,please save more");
+            return;
+        }
+
+
+        while (true) {
+            System.out.println("please input the amount of money you want to take out：");
+            double money = sc.nextDouble();
+
+            if(loginAcc.getMoney() >= money){
+                if(money > loginAcc.getLimit()){
+                    System.out.println("it is over the limitation,you can only take：" + loginAcc.getLimit()+"each time");
+                }else {
+                    loginAcc.setMoney(loginAcc.getMoney() - money);
+                    System.out.println("you have taken：" + money + "successfully,now you have：" + loginAcc.getMoney());
+                    break;
+                }
+            }else {
+                System.out.println("you do not have enough money：" + loginAcc.getMoney());
+            }
+        }
+    }
 
 }
 
