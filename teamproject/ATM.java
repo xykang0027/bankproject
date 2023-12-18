@@ -142,6 +142,7 @@ public class ATM {
                     transferMoney();
                     break;
                 case 5:
+                    updatePassWord();
                     break;
                 case 6:
                     System.out.println(loginAcc.getUsername() + "You have successfully logged out of the system!");
