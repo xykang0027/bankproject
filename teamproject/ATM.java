@@ -126,6 +126,7 @@ public class ATM {
             System.out.println("4.transfer money");
             System.out.println("5.change password");
             System.out.println("6.leave");
+            System.out.println("7.delete account");
             System.out.println("Cancel current account");
             int command = sc.nextInt();
             switch (command) {
