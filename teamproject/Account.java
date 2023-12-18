@@ -47,11 +47,13 @@ public class Account {
         this.limit = limit;
     }
 
-    public String setPassWord(String okpassWord) {
-        return okpassWord;
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
     }
 
     public String getPassWord() {
         return passWord;
     }
+
+
 }

@@ -10,6 +10,7 @@ public class ATM {
     private Scanner sc = new Scanner(System.in);
 
     private Account loginAcc;
+    private String okPassWord;
     //opening
 
     public void start() {
@@ -53,7 +54,7 @@ public class ATM {
                 if(acc.getPassWord().equals(passWord)){
                     loginAcc = acc;
                     System.out.println("Congratulations," + acc.getUsername() + " login successful");
-                    showLoginAccount();
+                    showUserCommand();
                     return;
                 }
                 else{
