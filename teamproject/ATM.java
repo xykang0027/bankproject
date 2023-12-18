@@ -1,6 +1,7 @@
 package teamproject;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -38,14 +39,31 @@ public class ATM {
         if (accounts.size() == 0) {
             return;
         }
-        System.out.println("Please enter your login card number");
+        while (true){
+            System.out.println("Please enter your login card number");
         String cardid = sc.next();
         Account acc = getAccountByCardId(cardid);
         if (acc == null) {
             System.out.println("The cardid you enter is nonexistent");
         }
+        else{
+            while (true) {
+                System.out.println("Please enter password");
+                String passWord = sc.next();
+                if(acc.getPassWord().equals(passWord)){
+                    loginAcc = acc;
+                    System.out.println("Congratulations," + acc.getUsername() + " login successful");
+                    showLoginAccount();
+                    return;
+                }
+                else{
+                    System.out.println("The password you entered is incorrect. Please re-enter it");
+                }
+            }
+        }
     }
 
+}
     //finish opening account
     private void creatAccount() {
         System.out.println("**System account opening operation**");
@@ -99,30 +117,37 @@ public class ATM {
     }
 
     private void showUserCommand() {
-        System.out.println("you can choose these functions to deal with your account");
-        System.out.println("1.check account");
-        System.out.println("2.save money");
-        System.out.println("3.take money");
-        System.out.println("4.transfer money");
-        System.out.println("5.change password");
-        System.out.println("6.leave");
-        int command = sc.nextInt();
-        switch (command) {
-            case 1:
-                //check money
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            case 5:
-                break;
-            case 6:
-                break;
-            default:
-                System.out.println("the operate you choose is not exsit,please choose another");
+        while (true) {
+            System.out.println(loginAcc.getUsername() + "you can choose these functions to deal with your account");
+            System.out.println("1.check account");
+            System.out.println("2.save money");
+            System.out.println("3.take money");
+            System.out.println("4.transfer money");
+            System.out.println("5.change password");
+            System.out.println("6.leave");
+            System.out.println("Cancel current account");
+            int command = sc.nextInt();
+            switch (command) {
+                case 1:
+                    showLoginAccount();
+                    //check account
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                case 6:
+                    System.out.println(loginAcc.getUsername() + "You have successfully logged out of the system!");
+                    return;
+                case 7:
+                    break;
+                default:
+                    System.out.println("the operate you choose is not exsit,please choose another");
+            }
         }
     }
 
@@ -165,7 +190,6 @@ public class ATM {
         System.out.println("here is the information of your account");
         System.out.println("account number：" + loginAcc.getCardID());
         System.out.println("user：" + loginAcc.getUsername());
-        System.out.println("sex：" + loginAcc.getSex());
         System.out.println("money：" + loginAcc.getMoney());
         System.out.println("limitation of each time：" + loginAcc.getLimit());
     }
