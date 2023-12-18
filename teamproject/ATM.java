@@ -1,12 +1,17 @@
 package teamproject;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.HashSet;
+import java.util.Set;
+
 
 public class ATM {
     private ArrayList<Account> accounts = new ArrayList<>();
+    private Set<String> accountNames = new HashSet<>();
     private Scanner sc = new Scanner(System.in);
 
     private Account loginAcc;
@@ -18,6 +23,7 @@ public class ATM {
             System.out.println("Welcome to join the ATM");
             System.out.println("1,log in");
             System.out.println("2,User account opening");
+            System.out.println("3,Find account name");
             System.out.println("Take your choices");
             int command = sc.nextInt();
             switch (command) {
@@ -28,12 +34,28 @@ public class ATM {
                     //account opening
                     creatAccount();
                     break;
+                case 3:
+                    search();
+                    break;
                 default:
                     System.out.println("no operation ");
             }
         }
     }
+    private void search(){
+        System.out.println("Please enter the account name you want to search for");
+        String searchName = sc.next();
+        for (String accountName : accountNames) {
+            // 使用正则表达式进行模糊匹配
+            Pattern pattern = Pattern.compile(".*" + searchName + ".*", Pattern.CASE_INSENSITIVE);
+            Matcher matcher = pattern.matcher(accountName);
 
+            if (matcher.matches()) {
+                System.out.println("Match found: " + accountName);
+            }
+        }
+        return;
+    }
     private void login() {
         System.out.println("==System login==");
         if (accounts.size() == 0) {
@@ -71,6 +93,7 @@ public class ATM {
         Account acc = new Account();
         System.out.println("Enter account name");
         String name = sc.next();
+        accountNames.add(name);
         acc.setUsername(name);
         System.out.println("Please set your password");
         String passWord = sc.next();
