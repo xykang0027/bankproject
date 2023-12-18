@@ -14,15 +14,14 @@ public class ATM {
 
     public void start() {
         while (true) {
-            System.out.println("welcome to join the ATM");
+            System.out.println("Welcome to join the ATM");
             System.out.println("1,log in");
             System.out.println("2,User account opening");
             System.out.println("Take your choices");
             int command = sc.nextInt();
             switch (command) {
                 case 1:
-                    //log in
-
+                    login();
                     break;
                 case 2:
                     //account opening
@@ -37,6 +36,7 @@ public class ATM {
     private void login() {
         System.out.println("==System login==");
         if (accounts.size() == 0) {
+            System.out.println("Unregistered account yet");
             return;
         }
         while (true){
@@ -68,17 +68,17 @@ public class ATM {
     private void creatAccount() {
         System.out.println("**System account opening operation**");
         Account acc = new Account();
-        System.out.println("enter your account information");
+        System.out.println("Enter account name");
         String name = sc.next();
         acc.setUsername(name);
-        System.out.println("please set your password");
+        System.out.println("Please set your password");
         String passWord = sc.next();
-        System.out.println("please confirm your password");
+        System.out.println("Please confirm your password");
         String okPassWord = sc.next();
         if (okPassWord.equals(passWord)) {
             acc.setPassWord(okPassWord);
         } else {
-            System.out.println("the two passwords you entered do not match.please confirm");
+            System.out.println("The two passwords you entered do not match.please confirm");
 
         }
         System.out.println("Please enter your withdrawal limit");
@@ -89,14 +89,14 @@ public class ATM {
 
 
         accounts.add(acc);
-        System.out.println("Congratulations!" + acc.getUsername() + "Account opened successfully, your card number is" + acc.getCardID());
+        System.out.println("Congratulations!" + acc.getUsername() + "Account opened successfully, your card number is " + acc.getCardID());
     }
 
     private String createCardid() {
         String cardid = "";
         Random r = new Random();
-        for (int i = 0; i < 8; i++) {
-            int data = r.nextInt(8);
+        for (int i = 0; i < 12; i++) {
+            int data = r.nextInt(12);
             cardid += data;
         }
         Account acc = getAccountByCardId(cardid);
@@ -153,7 +153,7 @@ public class ATM {
                     };
                     break;
                 default:
-                    System.out.println("the operate you choose is not exsit,please choose another");
+                    System.out.println("The operate you choose is not exsit,please choose another");
             }
         }
     }
@@ -180,70 +180,70 @@ public class ATM {
     }
 
     private void updatePassWord() {
-        System.out.println("change password");
+        System.out.println("Change password");
         while (true) {
-            System.out.println("please input your origin password：");
+            System.out.println("Please input your origin password：");
             String passWord = sc.next();
 
             if (loginAcc.getPassWord().equals(passWord)) {
                 while (true) {
-                    System.out.println("please input new password：");
+                    System.out.println("Please input new password：");
                     String newPassWord = sc.next();
 
-                    System.out.println("please input new password again：");
+                    System.out.println("Please input new password again：");
                     String okPassWord = sc.next();
 
                     if (okPassWord.equals(newPassWord)) {
                         loginAcc.setPassWord(okPassWord);
-                        System.out.println("congratulation,you have changed your password successfully~~~");
+                        System.out.println("Congratulation,you have changed your password successfully~~~");
                         return;
                     } else {
-                        System.out.println("the two password you input is different");
+                        System.out.println("The two password you input is different");
                     }
                 }
             } else {
-                System.out.println("the origin password is not exist");
+                System.out.println("The origin password is not exist");
             }
         }
     }
     private void depositMoney() {
-        System.out.println("save money");
-        System.out.println("please input the amount you want to save：");
+        System.out.println("Save money");
+        System.out.println("Please input the amount you want to save：");
         double money = sc.nextDouble();
 
         loginAcc.setMoney(loginAcc.getMoney() + money);
-        System.out.println("congratulation,you have saved：" + money + "in your account" + loginAcc.getMoney());
+        System.out.println("Congratulation,you have saved：" + money + "in your account" + loginAcc.getMoney());
     }
     private void showLoginAccount(){
-        System.out.println("here is the information of your account");
-        System.out.println("account number：" + loginAcc.getCardID());
-        System.out.println("user：" + loginAcc.getUsername());
-        System.out.println("money：" + loginAcc.getMoney());
+        System.out.println("Here is the information of your account");
+        System.out.println("Account number：" + loginAcc.getCardID());
+        System.out.println("User：" + loginAcc.getUsername());
+        System.out.println("Money：" + loginAcc.getMoney());
         System.out.println("limitation of each time：" + loginAcc.getLimit());
     }
 
     private void transferMoney() {
-        System.out.println("transfer money");
+        System.out.println("Transfer money");
         if (accounts.size() < 2) {
-            System.out.println("you are the only account in system, you can not transfer money");
+            System.out.println("You are the only account in system, you can not transfer money");
             return;
         }
 
         if (loginAcc.getMoney() == 0) {
-            System.out.println("you don not have enough money");
+            System.out.println("You don not have enough money");
             return;
         }
 
         while (true) {
-            System.out.println("please input target account number：");
+            System.out.println("Please input target account number：");
             String cardId = sc.next();
 
             Account acc = getAccountByCardId(cardId);
             if (acc == null) {
-                System.out.println("this account is not exist");
+                System.out.println("This account is not exist");
             } else {
 
-                System.out.println("please input the amount of money you want to transfer：");
+                System.out.println("Please input the amount of money you want to transfer：");
                 double money = sc.nextDouble();
 
                 if (loginAcc.getMoney() >= money) {
@@ -253,13 +253,13 @@ public class ATM {
                     System.out.println("success");
                     return; // 跳出转账方法。。
                 } else {
-                    System.out.println("you do not have enough money ,you can only transfer：" + loginAcc.getMoney());
+                    System.out.println("You do not have enough money ,you can only transfer：" + loginAcc.getMoney());
                 }
             }
         }
     }
     private void drawMoney() {
-        System.out.println("take money");
+        System.out.println("Take money");
         if(loginAcc.getMoney() < 100){
             System.out.println("you do not have enough money,please save more");
             return;
@@ -267,19 +267,19 @@ public class ATM {
 
 
         while (true) {
-            System.out.println("please input the amount of money you want to take out：");
+            System.out.println("Please input the amount of money you want to take out：");
             double money = sc.nextDouble();
 
             if(loginAcc.getMoney() >= money){
                 if(money > loginAcc.getLimit()){
-                    System.out.println("it is over the limitation,you can only take：" + loginAcc.getLimit()+"each time");
+                    System.out.println("It is over the limitation,you can only take：" + loginAcc.getLimit()+"each time");
                 }else {
                     loginAcc.setMoney(loginAcc.getMoney() - money);
-                    System.out.println("you have taken：" + money + "successfully,now you have：" + loginAcc.getMoney());
+                    System.out.println("You have taken：" + money + "successfully,now you have：" + loginAcc.getMoney());
                     break;
                 }
             }else {
-                System.out.println("you do not have enough money：" + loginAcc.getMoney());
+                System.out.println("You do not have enough money：" + loginAcc.getMoney());
             }
         }
     }

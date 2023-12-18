@@ -47,8 +47,8 @@ public class Account {
         this.limit = limit;
     }
 
-    public String setPassWord(String okPassWord) {
-        return passWord;
+    public String setPassWord(String okpassWord) {
+        return okpassWord;
     }
 
     public String getPassWord() {
