@@ -17,7 +17,7 @@ public class ATM {
             System.out.println("welcome to join the ATM");
             System.out.println("1,log in");
             System.out.println("2,User account opening");
-            System.out.println("take your choices");
+            System.out.println("Take your choices");
             int command = sc.nextInt();
             switch (command) {
                 case 1:
@@ -133,10 +133,13 @@ public class ATM {
                     //check account
                     break;
                 case 2:
+                    depositMoney();
                     break;
                 case 3:
+                    drawMoney();
                     break;
                 case 4:
+                    transferMoney();
                     break;
                 case 5:
                     break;
@@ -144,11 +147,35 @@ public class ATM {
                     System.out.println(loginAcc.getUsername() + "You have successfully logged out of the system!");
                     return;
                 case 7:
+                    if(deleteAccount()){
+                        return;
+                    };
                     break;
                 default:
                     System.out.println("the operate you choose is not exsit,please choose another");
             }
         }
+    }
+    private boolean deleteAccount(){
+        System.out.println("Account cancellation operation in progress");
+        System.out.println("Are you sure to cancel the account? y/n");
+        String command = sc.next();
+        switch (command){
+            case "y":
+                if(loginAcc.getMoney() == 0){
+                    accounts.remove(loginAcc);
+                    System.out.println("The current account has been successfully closed");
+                    return true;
+                }
+                else{
+                    System.out.println("Sorry, there is an amount in your account that cannot be closed");
+                    return false;
+                }
+            case "n":
+                System.out.println("Cancelled account cancellation system");
+                return false;
+        }
+        return false;
     }
 
     private void updatePassWord() {
